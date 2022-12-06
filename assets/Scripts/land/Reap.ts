@@ -8,6 +8,8 @@ const { ccclass, property } = _decorator;
 export class Reap extends Component {
 
     public plantRecordId = 0;
+
+    private _reaping = false;
     start() {
 
     }
@@ -17,12 +19,17 @@ export class Reap extends Component {
     }
 
     reap() {
+        if (this._reaping) return;
+        this._reaping = true;
         const po = this.node.getChildByName('plant_opr').getComponent(PlantOpr);
         po.hide();
         const pe = this.getComponent(PlantEffect);
         FarmApi.pick(this.plantRecordId).then(() => {
             pe.reap();
-        });
+        }).catch(console.error)
+            .catch(() => {
+                this._reaping = false;
+            });
     }
 }
 

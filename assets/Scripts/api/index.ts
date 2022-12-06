@@ -74,6 +74,7 @@ export namespace FarmApi {
                 "plantStatus": number; // 土地当前状态
                 "landStatus": number; // 土地状态  1.空闲中 2.种植中
                 "landNum": number; // 土地编号
+                "nexChangeTime": number; // 下次状态变更时间
             }[];
         }
     };

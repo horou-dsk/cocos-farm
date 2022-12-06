@@ -6,6 +6,7 @@ import {PlantEffect} from "db://assets/Scripts/land/plant/PlantEffect";
 import {Land} from "db://assets/Scripts/land/Land";
 import {Sowing} from "db://assets/Scripts/land/Sowing";
 import {Reap} from "db://assets/Scripts/land/Reap";
+import {CountDown} from "db://assets/Scripts/ext/CountDown";
 const { ccclass, property } = _decorator;
 
 @ccclass('Lands')
@@ -76,13 +77,17 @@ export class Lands extends Component {
                             continue;
                         }
                         const plant = instantiate(this.plant);
-                        landNode.addChild(plant);
+                        landNode.insertChild(plant, 0);
                         const crop = plant.getChildByName(plantType[record.plantId]);
                         const cropStatusNode = crop.getChildByName(record.plantStatus.toString());
                         cropStatusNode.active = true;
                         plant.getComponent(Reap).plantRecordId = record.plantRecordId;
                         const pe = plant.getComponent(PlantEffect);
                         pe.toNode = this.reapToNode;
+
+                        // 倒计时
+                        const countdown = landNode.getChildByName('countdown').getComponent(CountDown);
+                        countdown.endTime = record.nexChangeTime;
                     }
                 }
             }
@@ -103,13 +108,17 @@ export class Lands extends Component {
         const land = landNode.getComponent(Land);
         land.open = true;
         const plant = instantiate(this.plant);
-        landNode.addChild(plant);
+        landNode.insertChild(plant, 0);
         const crop = plant.getChildByName(this.plantType[data.plantId]);
         const cropStatusNode = crop.getChildByName(data.status.toString());
         cropStatusNode.active = true;
         plant.getComponent(Reap).plantRecordId = data.plantRecordId;
         const pe = plant.getComponent(PlantEffect);
         pe.toNode = this.reapToNode;
+
+        // 倒计时
+        const countdown = landNode.getChildByName('countdown').getComponent(CountDown);
+        countdown.endTime = data.nexChangeTime;
     }
 }
 

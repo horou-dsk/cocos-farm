@@ -1,7 +1,7 @@
 
 const BASE_URL = 'http://35.247.144.129:8080';
 
-const TOKEN = (window as any)._getFarmToken?.() || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjE4Mi4xMzcuMTYxLjE5OCIsImxvZ2luVGltZXN0YW1wIjoiMTY3MDE2MzMxODg5MSJ9.FYzhqWBFfe0NNK40EYVM8xaJ_XRX7rTOcXloQ46UNQM';
+const TOKEN = (window as any)._getFarmToken?.() || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjIyMC4yNDYuMjUyLjQ3IiwibG9naW5UaW1lc3RhbXAiOiIxNjcwMzM4MTcwMjI0In0.wumb3p4IzN9kQjKfEN82vGgczzgo2Uh-LkDt08f0SCE';
 
 export const DEFAULT_HEADERS = {
     token: TOKEN, // typeof window !== "undefined" ? window.localStorage.getItem('FARM_TOKEN') : '',

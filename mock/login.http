@@ -1,0 +1,11 @@
+POST http://35.247.144.129:8080/user/login
+Content-Type: application/json
+
+{
+  "data": {
+    "address": "0x0fefa334fa78dcd6858742d13ff6a5d59bdd121c",
+    "sdkWalletType": 1,
+    "chainStr": "bsc",
+    "invitationCode": ""
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "general": {
+    "designResolution": {
+      "width": 844,
+      "height": 440,
+      "fitWidth": false
+    }
+  },
+  "physics": {
+    "defaultMaterial": {
+      "restitution": 0.1
+    }
+  }
+}

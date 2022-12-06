@@ -1,0 +1,9 @@
+{
+  "name": "farm",
+  "uuid": "b24a23ef-d006-4b24-b24d-3e896874486b",
+  "version": "3.6.2",
+  "creator": {
+    "version": "3.6.2"
+  },
+  "dependencies": {}
+}

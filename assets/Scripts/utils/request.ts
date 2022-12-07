@@ -1,7 +1,23 @@
 
 const BASE_URL = 'http://35.247.144.129:8080';
 
-const TOKEN = (window as any)._getFarmToken?.() || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjIyMC4yNDYuMjUyLjQ3IiwibG9naW5UaW1lc3RhbXAiOiIxNjcwMzM4MTcwMjI0In0.wumb3p4IzN9kQjKfEN82vGgczzgo2Uh-LkDt08f0SCE';
+const TOKEN = (function () {
+    var url = window.location.href;
+    if (url) {
+        var arr = url.split("?");
+        if (arr && arr.length > 1) {
+          var args = arr[1];
+          if (args) {
+            let params = new URLSearchParams(args);
+            let token = params.get("token");
+            return token;
+          }
+        }
+    }
+    throw "请传入token";
+})()
+  || 
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjIyMC4yNDYuMjUyLjQ3IiwibG9naW5UaW1lc3RhbXAiOiIxNjcwMzM4MTcwMjI0In0.wumb3p4IzN9kQjKfEN82vGgczzgo2Uh-LkDt08f0SCE';
 
 export const DEFAULT_HEADERS = {
     token: TOKEN, // typeof window !== "undefined" ? window.localStorage.getItem('FARM_TOKEN') : '',

@@ -1,5 +1,5 @@
-import { _decorator, Component, Node, Label } from 'cc';
-const { ccclass, property } = _decorator;
+import { _decorator, Component, Label } from 'cc';
+const { ccclass } = _decorator;
 
 @ccclass('CountDown')
 export class CountDown extends Component {
@@ -24,8 +24,11 @@ export class CountDown extends Component {
         this._label = this.node.getComponent(Label);
     }
 
-    update(deltaTime: number) {
+    update(_deltaTime: number) {
         if (!this._running || !this._label) return;
+        if (!this._endTime) {
+            this._running = false;
+        }
         const diff = Math.floor(this._endTime - Date.now());
         if (diff <= 0) {
             this._running = false;

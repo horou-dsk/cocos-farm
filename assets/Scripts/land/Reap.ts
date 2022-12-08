@@ -9,6 +9,8 @@ export class Reap extends Component {
 
     public plantRecordId = 0;
 
+    public canReap = false;
+
     private _reaping = false;
     start() {
 
@@ -19,7 +21,7 @@ export class Reap extends Component {
     }
 
     reap() {
-        if (this._reaping) return;
+        if (this._reaping || !this.canReap) return;
         this._reaping = true;
         const po = this.node.getChildByName('plant_opr').getComponent(PlantOpr);
         po.hide();

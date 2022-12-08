@@ -14,7 +14,9 @@ const TOKEN = (function () {
           }
         }
     }
-    throw "请传入token";
+    // 该位置不能抛出错误，构建时cocos会全局运行代码，抛出错误会导致后续构建异常。
+    // throw "请传入token";
+    return null;
 })()
   || 
 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjIyMC4yNDYuMjUyLjQ3IiwibG9naW5UaW1lc3RhbXAiOiIxNjcwMzM4MTcwMjI0In0.wumb3p4IzN9kQjKfEN82vGgczzgo2Uh-LkDt08f0SCE';

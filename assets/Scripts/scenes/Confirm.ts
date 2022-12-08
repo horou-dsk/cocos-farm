@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Label, instantiate, Vec3 } from 'cc';
+import { _decorator, Component, Node, Label, instantiate, Vec3, resources, Prefab, director } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Confirm')
@@ -26,9 +26,7 @@ export class Confirm extends Component {
     }
 
     show() {
-        const node = instantiate(this.node);
-        node.setPosition(new Vec3(0, 0, 0));
-        this.node.parent.addChild(node);
+        this.node.setPosition(new Vec3(0, 0, 0));
     }
 
     confirm() {}
@@ -38,4 +36,15 @@ export class Confirm extends Component {
     }
 }
 
-
+export function createConfirm(): Promise<Confirm> {
+    return new Promise((resolve, reject) => {
+        resources.load('Prefab/Main/Confirm', Prefab, (err, prefab) => {
+            if (err) {
+                return reject(err);
+            }
+            const node: Node = instantiate(prefab);
+            director.getScene().getChildByName('Canvas').addChild(node);
+            resolve(node.getComponent(Confirm));
+        });
+    });
+}

@@ -36,6 +36,11 @@ export class Rank extends Component {
     show() {
         FarmApi.queryLeaderboard()
             .then(({data}) => {
+                for (let child of this.content.children) {
+                    if (child.active) {
+                        child.destroy();
+                    }
+                }
                 this.myRank.string = data.myRanking.toString();
                 for (let v of data.farmRankingLists) {
                     const node = instantiate(this.item);

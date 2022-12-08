@@ -2,6 +2,7 @@ import { _decorator, Component, Node, Label, instantiate, Sprite, Vec2, Vec3 } f
 import {Item, ProductInfo} from "db://assets/Scripts/scenes/Shop/Item";
 import {FarmApi} from "db://assets/Scripts/api";
 import { Shop } from './Shop';
+import {Confirm, createConfirm} from "db://assets/Scripts/scenes/Confirm";
 const { ccclass, property } = _decorator;
 
 @ccclass('BuyConfirm')
@@ -117,8 +118,13 @@ export class BuyConfirm extends Component {
 
     buy() {
         FarmApi.purchaseOrReplacement(this._productId, this._buyNumber).then((res) => {
-            console.log(res);
-            alert('置换成功!');
+            return createConfirm();
+        }).then((confirm) => {
+            confirm.content = '置换成功！';
+            confirm.show();
+            confirm.confirm = () => {
+                confirm.node.destroy();
+            }
             this.shop.updateStore();
             this.hide();
         });

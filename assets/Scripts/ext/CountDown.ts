@@ -25,7 +25,7 @@ export class CountDown extends Component {
     }
 
     update(deltaTime: number) {
-        if (!this._running && !this._label) return;
+        if (!this._running || !this._label) return;
         const diff = Math.floor(this._endTime - Date.now());
         if (diff <= 0) {
             this._running = false;

@@ -137,8 +137,6 @@ export const RequestMapping = function (method: string) {
             if (!this.__requestController) return;
             eventEmitter.off(method, this[propertyKey]);
         }
-        // console.log(target);
-        // console.log(target.constructor);
         const start = target.__requestControllerInit;
         target.__requestControllerInit = function () {
             if (!this.__requestController) return;

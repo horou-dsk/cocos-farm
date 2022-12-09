@@ -10,10 +10,14 @@ export class CountDown extends Component {
     }
 
     set endTime(value: number) {
-        this._endTime = value * 1000;
-        if (this._endTime > Date.now()) {
-            this.node.active = true;
-            this._running = true;
+        if (value) {
+            this._endTime = value * 1000;
+            if (this._endTime > Date.now()) {
+                this.node.active = true;
+                this._running = true;
+            }
+        } else {
+            this._endTime = null;
         }
     }
 

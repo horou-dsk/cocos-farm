@@ -1,3 +1,4 @@
+import { createConfirm } from "../scenes/Confirm";
 
 const BASE_URL = 'http://35.247.144.129:8080';
 
@@ -26,7 +27,7 @@ export const DEFAULT_HEADERS = {
 };
 
 export class RequestError extends Error {
-    constructor(message: string, public status: number) {
+    constructor(message: string, public status: number, public error?: number) {
         super(message);
     }
 }
@@ -61,11 +62,28 @@ class Request {
                 }
             }).then(json => {
                 if (json.status !== '200') {
-                    return Promise.reject(new RequestError(json.message, Number(json.status)));
+                    return Promise.reject(new RequestError(json.message, Number(json.status), Number(json.error)));
                 }
                 return json;
             });
     }
+}
+
+export async function handleRequestError(err: RequestError) {
+    const confirm = await createConfirm();
+    if (err.error === 301) {
+        confirm.content = '登录失效，请重新登录';
+        confirm.confirm = () => {
+            history.back();
+        }
+        confirm.close = () => {};
+    } else {
+        confirm.content = err.message;
+        confirm.confirm = () => {
+            confirm.node.destroy();
+        }
+    }
+    confirm.show();
 }
 
 export default new Request();

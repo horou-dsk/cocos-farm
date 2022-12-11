@@ -2,12 +2,35 @@ import { _decorator, Component, Node, tween, Vec3, input, Input, NodeEventType }
 import {getParentByName} from "db://assets/Scripts/utils/utils";
 const { ccclass, property } = _decorator;
 
+export enum OprType {
+    Reap,
+    Steal,
+}
+
 @ccclass('PlantOpr')
 export class PlantOpr extends Component {
+
+    @property(Node)
+    reap: Node;
+
+    @property(Node)
+    steal: Node;
 
     scale = new Vec3(0.7, 0.7);
 
     private _topNode: Node | null = null;
+
+    setOprType(type: OprType) {
+        switch(type) {
+            case OprType.Reap:
+                this.reap.active = true;
+                this.steal.active = false;
+                break;
+            case OprType.Steal:
+                this.reap.active = false;
+                this.steal.active = true;
+        }
+    }
 
     start() {
     }

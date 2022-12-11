@@ -61,6 +61,10 @@ export namespace FarmApi {
         net.send({method: 'SELF'});
     }
 
+    export function OtherLandData(id: number) {
+        net.send({method: 'OTHER', message: {userId: id}});
+    }
+
     export function pick(id: number) {
         return request.post('/farm/pick', {data: {plantRecordId: id}});
     }
@@ -86,5 +90,21 @@ export namespace FarmApi {
         "userId": number,  // 用户id
         "landNum": number, // 土地编号
         "status": number // 当前状态
+    }
+
+    export function getCanStealUsersInfo() {
+        return request.get('/farm/getCanStealUsersInfo');
+    }
+
+    export function enterOtherFarm(id: number) {
+        return request.get('/farm/enterOtherFarm?userId=' + id);
+    }
+
+    export function steal(id: number) {
+        return request.post('/farm/steal', {data: {plantRecordId: id}});
+    }
+
+    export function outOtherFarm(userId: number) {
+        return request.get('/farm/outOtherFarm?userId=' + userId);
     }
 }

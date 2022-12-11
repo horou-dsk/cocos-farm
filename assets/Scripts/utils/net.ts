@@ -31,7 +31,7 @@ class EventEmitter {
     }
 }
 
-const eventEmitter = new EventEmitter();
+export const eventEmitter = new EventEmitter();
 
 export class NetSocket {
 
@@ -82,6 +82,7 @@ export class NetSocket {
 
     private onMessage = ({data}) => {
         const jsonMsg = JSON.parse(data);
+        if (jsonMsg.method === 'ERROR') return;
         eventEmitter.emit(jsonMsg.method, jsonMsg.data);
     }
 

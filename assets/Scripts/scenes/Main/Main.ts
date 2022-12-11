@@ -3,6 +3,7 @@ const { ccclass, property } = _decorator;
 import * as i18n from 'db://i18n/LanguageData';
 import {net} from "db://assets/Scripts/utils/net";
 import {FarmApi} from "db://assets/Scripts/api";
+import { handleRequestError } from '../../utils/request';
 
 @ccclass('Main')
 export class Main extends Component {
@@ -14,7 +15,10 @@ export class Main extends Component {
             // }
         });
         net.connect();
-        FarmApi.enterFarm().then(console.log);
+        FarmApi.enterFarm().catch(handleRequestError);
+        // this.schedule(function() {
+        //     FarmApi.MyLandData();
+        // }, 3);
     }
 
     update(deltaTime: number) {

@@ -4,6 +4,7 @@ import {SeedList} from "db://assets/Scripts/scenes/Shop/SeedList";
 import {FarmApi} from "db://assets/Scripts/api";
 import {PropsList} from "db://assets/Scripts/scenes/Shop/PropsList";
 import {SeedNum} from "db://assets/Scripts/scenes/Shop/SeedNum";
+import { handleRequestError } from '../../utils/request';
 const { ccclass, property } = _decorator;
 
 enum GoodsType {
@@ -69,7 +70,7 @@ export class Shop extends Component {
                     const props = this.propsList.getComponent(PropsList);
                     props.updateList(data.productList);
                 }
-            });
+            }).catch(handleRequestError);
     }
 
     switchList(_event, ty: string) {

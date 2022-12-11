@@ -3,6 +3,7 @@ import {PlantOpr} from "db://assets/Scripts/land/plant/PlantOpr";
 import {AtalsLabel} from "db://assets/Scripts/ext/AtalsLabel";
 import {RequestController, RequestMapping} from "db://assets/Scripts/utils/net";
 import {FarmApi} from "db://assets/Scripts/api";
+import { handleRequestError } from '../utils/request';
 const { ccclass, property } = _decorator;
 
 @ccclass('Sowing')
@@ -26,7 +27,7 @@ export class Sowing extends Component {
         console.log(type);
         FarmApi.plant(Number(type), this.landNum).then(() => {
             FarmApi.MyLandData();
-        });
+        }).catch(handleRequestError);
         const po = this.getComponent(PlantOpr);
         po.hide();
     }

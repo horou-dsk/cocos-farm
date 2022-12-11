@@ -38,10 +38,11 @@ export class CountDown extends Component {
             this._running = false;
             this.node.active = false;
         } else {
-            const minutes = Math.floor(diff / 1000 / 60);
+            const hours = Math.floor(diff / 1000 / 60 / 60);
+            const minutes = Math.floor(diff / 1000 / 60) % 60;
             const seconds = Math.floor(diff / 1000) % 60;
-            const millis = diff % 1000;
-            this._label.string = `${minutes}:${seconds}:${millis}`;
+            // const millis = diff % 1000;
+            this._label.string = `${hours}:${minutes}:${seconds}`;
         }
     }
 }

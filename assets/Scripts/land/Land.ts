@@ -5,6 +5,7 @@ import {Confirm} from "db://assets/Scripts/scenes/Confirm";
 import {getParentByName} from "db://assets/Scripts/utils/utils";
 import {FarmApi} from "db://assets/Scripts/api";
 import {net} from "db://assets/Scripts/utils/net";
+import { handleRequestError } from '../utils/request';
 const { ccclass, property } = _decorator;
 
 @ccclass('Land')
@@ -14,6 +15,9 @@ export class Land extends Component {
     confirm: Prefab;
 
     private _open = false;
+
+    public canOpen = true;
+
     get open(): boolean {
         return this._open;
     }
@@ -31,6 +35,7 @@ export class Land extends Component {
     }
 
     sowingShow() {
+        if (!this.canOpen) return;
         const plant = this.node.getChildByName('plant');
         if (!plant && this.open) {
             this.sowingNode.getComponent(PlantOpr).show();
@@ -43,7 +48,7 @@ export class Land extends Component {
             c.confirm = () => {
                 FarmApi.activeLand().then(() => {
                     net.send({method: 'SELF'});
-                }).catch(console.log);
+                }).catch(handleRequestError);
                 confirm.destroy();
             }
             getParentByName(this.node, 'Canvas').addChild(confirm);

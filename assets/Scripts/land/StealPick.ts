@@ -3,6 +3,7 @@ import { FarmApi } from '../api';
 import { handleRequestError } from '../utils/request';
 import { PlantOpr } from './plant/PlantOpr';
 import { StealEffect } from './plant/StealEffect';
+import {createConfirm} from "db://assets/Scripts/scenes/Confirm";
 const { ccclass, property } = _decorator;
 
 @ccclass('StealPick')
@@ -28,7 +29,13 @@ export class StealPick extends Component {
             .then(({data}) => {
                 ste.stealNum = data.stealAmount;
                 ste.show();
+                return createConfirm();
+            }).then(confirm => {
+                confirm.content="采摘成功，奖励"+ste.stealNum+"个金币";
+                confirm.show();
             }).catch(handleRequestError);
+
+
     }
 
     update(deltaTime: number) {

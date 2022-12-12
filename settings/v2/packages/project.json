@@ -5,7 +5,8 @@
       "height": 440,
       "fitWidth": false,
       "fitHeight": true
-    }
+    },
+    "renderPipeline": "fd8ec536-a354-4a17-9c74-4f3883c378c8"
   },
   "physics": {
     "defaultMaterial": {

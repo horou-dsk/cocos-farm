@@ -87,6 +87,8 @@ export class Shop extends Component {
                 this.node.setPosition(-1200, 0);
             })
             .start();
+
+        FarmApi.MyLandData();
     }
 
     show() {

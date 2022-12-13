@@ -92,6 +92,7 @@ export class BuyConfirm extends Component {
             this.desc.node.active = false;
             this.buyNumLabel1.node.active = true;
             this.useGoldLabel.node.active = true;
+            this.useGoldLabel.string = productInfo.useDesc;
             this.useGoldNum.node.active = true;
             this.numOpr.setPosition(oprPos);
             this._updateAmount();

@@ -9,6 +9,7 @@ export type ProductInfo = {
     sp: SpriteFrame;
     desc?: string;
     price?: number; // 单价
+    useDesc?: string;
 };
 
 @ccclass('Item')

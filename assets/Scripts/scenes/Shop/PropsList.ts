@@ -21,7 +21,7 @@ export class PropsList extends Component {
     @property(SpriteFrame)
     goldSp: SpriteFrame = null;
 
-    propsSp: {id: number; sp: SpriteFrame; text: string; num?: string; desc?: string; name: string}[] = [];
+    propsSp: {id: number; sp: SpriteFrame; text: string; num?: string; desc?: string; name: string; useDesc?: string}[] = [];
     start() {
         this.item.active = false;
     }
@@ -53,13 +53,15 @@ export class PropsList extends Component {
                 text: shop.copc,
                 num: '1',
                 name: shop.copcName,
+                useDesc: shop.useCoin,
             },
             {
                 id: 4,
                 sp: this.goldSp,
                 text: shop.gold,
-                num: '1',
+                num: '1000',
                 name: shop.goldName,
+                useDesc: shop.useCopc,
             },
         ];
         for (let node of this.content.children) {
@@ -101,6 +103,7 @@ export class PropsList extends Component {
                 name: props.name,
                 desc: props.desc,
                 sp: props.sp,
+                useDesc: props.useDesc,
                 price: (props.id === 3 || props.id === 4) ? Number(product.price) : undefined,
             };
             node.active = true;

@@ -8,14 +8,17 @@ import { handleRequestError } from '../../utils/request';
 @ccclass('Main')
 export class Main extends Component {
     start() {
-        net.send({
-            method: 'SELF',
-            // message: {
-            //     userId: ''
-            // }
-        });
-        net.connect();
-        FarmApi.enterFarm().catch(handleRequestError);
+        FarmApi.enterFarm().then(res => {
+            if (res.status == '200') {
+                net.send({
+                    method: 'SELF',
+                    // message: {
+                    //     userId: ''
+                    // }
+                });
+                net.connect();
+            }
+        }).catch(handleRequestError);
         // this.schedule(function() {
         //     FarmApi.MyLandData();
         // }, 3);

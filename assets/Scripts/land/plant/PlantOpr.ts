@@ -39,6 +39,10 @@ export class PlantOpr extends Component {
         this.hide();
     }
 
+    onDestory() {
+        this._topNode?.off(NodeEventType.TOUCH_END, this.onTouchEnd, this);
+    }
+
     hide() {
         if (this.node.active) {
             this.node.active = false;
@@ -57,7 +61,7 @@ export class PlantOpr extends Component {
         tween(this.node.getScale()).to(0.25, this.scale, {
             easing: 'backInOut',
             onUpdate: (scale: Vec3) => {
-                this.node.setScale(scale.x, scale.y);
+                this.node?.setScale(scale.x, scale.y);
             }
         }).start();
     }

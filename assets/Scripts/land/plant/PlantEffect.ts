@@ -79,11 +79,14 @@ export class PlantEffect extends Component {
 
     const selfRotate = this.node.getRotation();
 
-    tween(this.node.getWorldScale())
+    const tw = tween(this.node.getWorldScale())
       .to(0.4, new Vec3(0.2, 0.2, 0), {
         easing: "expoInOut",
         onUpdate: (target: Vec3, ratio: number) => {
-          if (!isValid(this)) return;
+          if (!isValid(this)) {
+            tw.stop();
+            return;
+          }
           const result = secondBezier(ratio, p0, p1, p2);
           this.node.setWorldPosition(new Vec3(result.x, result.y, selfPos.z));
           this.node.setWorldScale(target);

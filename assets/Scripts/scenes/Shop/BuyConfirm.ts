@@ -3,6 +3,7 @@ import {Item, ProductInfo} from "db://assets/Scripts/scenes/Shop/Item";
 import {FarmApi} from "db://assets/Scripts/api";
 import { Shop } from './Shop';
 import {Confirm, createConfirm} from "db://assets/Scripts/scenes/Confirm";
+import { handleRequestError } from '../../utils/request';
 const { ccclass, property } = _decorator;
 
 @ccclass('BuyConfirm')
@@ -128,7 +129,7 @@ export class BuyConfirm extends Component {
             }
             this.shop.updateStore();
             this.hide();
-        });
+        }).catch(handleRequestError);
     }
 
     update(deltaTime: number) {

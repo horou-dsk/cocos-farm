@@ -2,6 +2,7 @@ import { Component, isValid } from "cc";
 import { DEFAULT_HEADERS } from "db://assets/Scripts/utils/request";
 
 const BASE_WS = "ws://35.247.144.129:8888/farm";
+// const BASE_WS = "wss://socketfarm.transformers.vip/farm";
 
 class EventEmitter {
   private _listener: {

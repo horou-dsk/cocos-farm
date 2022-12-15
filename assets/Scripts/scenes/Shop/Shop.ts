@@ -36,7 +36,7 @@ export class Shop extends Component {
     private _type: GoodsType = GoodsType.Seed;
 
     start() {
-        this._switchList(GoodsType.Seed);
+        // this._switchList(GoodsType.Seed);
     }
 
     private _switchList(type: GoodsType) {

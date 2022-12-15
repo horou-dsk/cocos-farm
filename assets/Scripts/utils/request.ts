@@ -1,6 +1,7 @@
 import { createConfirm } from "../scenes/Confirm";
 
 const BASE_URL = 'http://35.247.144.129:8080';
+// const BASE_URL = 'https://api.transformers.vip';
 
 const TOKEN = (function () {
     var url = window.location.href;
@@ -19,8 +20,9 @@ const TOKEN = (function () {
     // throw "请传入token";
     return null;
 })()
-  || 
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjIyMC4yNDYuMjUyLjQ3IiwibG9naW5UaW1lc3RhbXAiOiIxNjcwMzM4MTcwMjI0In0.wumb3p4IzN9kQjKfEN82vGgczzgo2Uh-LkDt08f0SCE';
+//   || 
+// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIyIiwibG9naW5NYXJrIjoiYnl4aDRXUEEiLCJpcCI6IjIyMC4yNDYuMjUyLjQ3IiwibG9naW5UaW1lc3RhbXAiOiIxNjcwMzM4MTcwMjI0In0.wumb3p4IzN9kQjKfEN82vGgczzgo2Uh-LkDt08f0SCE'
+;
 
 export const DEFAULT_HEADERS = {
     token: TOKEN, // typeof window !== "undefined" ? window.localStorage.getItem('FARM_TOKEN') : '',

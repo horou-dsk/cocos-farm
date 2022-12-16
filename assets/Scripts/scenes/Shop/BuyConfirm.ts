@@ -86,7 +86,7 @@ export class BuyConfirm extends Component {
     }
 
     show(productInfo: ProductInfo) {
-        console.log(productInfo);
+        // console.log(productInfo);
         this.icon.spriteFrame = productInfo.sp;
         this.title.string = productInfo.name;
         const oprPos = new Vec3(25, -57);
@@ -97,8 +97,10 @@ export class BuyConfirm extends Component {
             this.buyNumLabel1.node.active = true;
             this.useGoldLabel.node.active = true;
             this.useGoldLabel.string = productInfo.useDesc ;
-            this.useGoldLabel1.node.active = true;
-            this.useGoldLabel1.string = "置换时扣取10%的手续费";
+            if (productInfo.name=="COPC"){
+                this.useGoldLabel1.node.active = true;
+                this.useGoldLabel1.string = "置换时扣取10%的手续费";
+            }
             this.useGoldNum.node.active = true;
             this.numOpr.setPosition(oprPos);
             this._updateAmount();

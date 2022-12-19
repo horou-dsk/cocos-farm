@@ -70,6 +70,9 @@ export class PropsList extends Component {
             }
         }
         for (let product of productList) {
+			if(product.productId == 4){
+				continue;
+			}
             const node = instantiate(this.item);
             const iconNode = node.getChildByName('Icon');
             const sprite = iconNode.getComponent(Sprite);

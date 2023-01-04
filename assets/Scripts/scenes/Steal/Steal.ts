@@ -11,7 +11,7 @@ import {
 } from "cc";
 import { FarmApi } from "../../api";
 import { CountDown } from "../../ext/CountDown";
-import { handleRequestError } from "../../utils/request";
+import { createConfirm } from "../Confirm";
 import { StealItem } from "./StealItem";
 const { ccclass, property } = _decorator;
 
@@ -98,7 +98,15 @@ export class Steal extends Component {
           this.updateList();
         };
       })
-      .catch(handleRequestError);
+      .catch(async (err) => {
+        const confirm = await createConfirm();
+        confirm.content = err.message;
+        confirm.confirm = () => {
+          confirm.node.destroy();
+          this.hide();
+        };
+        confirm.show();
+      });
   }
 
   update() {}

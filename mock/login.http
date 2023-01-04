@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "data": {
-    "address": "0x511b0B6c251Acd35899336dAA4223906a9274Ad1",
+    "address": "0x92086118DB810b1D902f50475929baf203f34B24",
     "sdkWalletType": 1,
     "chainStr": "bsc",
     "invitationCode": ""

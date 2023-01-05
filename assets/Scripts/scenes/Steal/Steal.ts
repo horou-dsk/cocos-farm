@@ -101,6 +101,10 @@ export class Steal extends Component {
       .catch(async (err) => {
         const confirm = await createConfirm();
         confirm.content = err.message;
+        confirm.close = () => {
+          confirm.node.destroy();
+          this.hide();
+        };
         confirm.confirm = () => {
           confirm.node.destroy();
           this.hide();

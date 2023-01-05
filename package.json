@@ -5,5 +5,7 @@
   "creator": {
     "version": "3.6.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "dayjs": "^1.11.7"
+  }
 }

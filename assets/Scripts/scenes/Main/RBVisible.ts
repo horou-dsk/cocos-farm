@@ -29,7 +29,7 @@ export class RBVisible extends Component {
   }
 
   onBlurSteal = () => {
-    this.b1.active = true;
+    // this.b1.active = true;
     this.b3.active = true;
     this.b4.active = true;
     this.b5.active = false;
@@ -39,7 +39,7 @@ export class RBVisible extends Component {
   onFocusSteal = (userId: number) => {
     console.log(userId);
     this.userId = userId;
-    this.b1.active = false;
+    // this.b1.active = false;
     this.b3.active = false;
     this.b4.active = false;
     this.b5.active = true;

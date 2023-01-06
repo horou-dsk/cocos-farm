@@ -75,7 +75,8 @@ export class GoldDetails extends Component {
           item.getComponent(Sprite).spriteFrame =
             Number(i) % 2 == 0 ? this.one : this.two;
           const label1 = item.getChildByName("Time").getComponent(Label);
-          label1.string = dayjs(v.createTime).format("YYYY-MM-DD HH:mm:ss");
+          console.log(v.createTime);
+          label1.string = dayjs.unix(v.createTime).format("YYYY-MM-DD HH:mm:ss");
           const label2 = item.getChildByName("Type").getComponent(Label);
           label2.string = v.changeTypeStr;
           const label3 = item.getChildByName("Num").getComponent(Label);
